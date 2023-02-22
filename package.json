@@ -35,7 +35,6 @@
 		"@faker-js/faker": "7.6.0",
 		"daisyui": "2.50.2",
 		"html2canvas": "1.4.1",
-		"jspdf": "2.5.1",
-		"svelte-gravatar": "1.0.3"
+		"jspdf": "2.5.1"
 	}
 }

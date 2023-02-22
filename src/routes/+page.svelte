@@ -1,7 +1,5 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	// @ts-ignore
-	import Gravatar from 'svelte-gravatar';
 	import { generatePdf } from '../utils/generatePDF';
 	export let data: PageData;
 
