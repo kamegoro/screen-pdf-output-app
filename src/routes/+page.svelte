@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { PageData } from './$types';
+	// @ts-ignore
 	import Gravatar from 'svelte-gravatar';
 	export let data: PageData;
 </script>
@@ -18,8 +19,8 @@
 				</div>
 			</div>
 			<div>
-				<p class="mb-3">{user.name}</p>
-				<div class="bg-white p-6">
+				<p class="mb-3 text-black">{user.name}</p>
+				<div class="bg-white text-black p-6">
 					<p>{user.description}</p>
 				</div>
 			</div>
