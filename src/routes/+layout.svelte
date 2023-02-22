@@ -1,8 +1,11 @@
-<header class="h-14" />
+<script lang="ts">
+	import '../app.css';
+</script>
 
-<slot class="bg-[#e6f2ff] h-100vh w-full" />
-<footer class="footer footer-center p-4 bg-base-300 text-base-content">
-	<div>
-		<p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
-	</div>
-</footer>
+<header class="h-14 w-full bg-white px-4 flex items-center">
+	<p class="normal-case text-xl font-bold">Kame</p>
+</header>
+
+<div class="bg-[#e6f2ff] h-screen w-full flex justify-center">
+	<slot />
+</div>
