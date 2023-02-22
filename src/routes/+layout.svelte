@@ -2,10 +2,10 @@
 	import '../app.css';
 </script>
 
-<header class="h-14 w-full bg-white px-4 flex items-center">
-	<p class="normal-case text-xl font-bold">Kame</p>
+<header class="h-14 w-full bg-white px-4 flex items-center fixed top-0">
+	<p class="normal-case text-xl font-bold">PDF OUTPUT</p>
 </header>
 
-<div class="bg-[#e6f2ff] h-screen w-full flex justify-center">
+<div class="bg-[#e6f2ff] h-full w-full flex justify-center pt-14">
 	<slot />
 </div>
