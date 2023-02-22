@@ -27,8 +27,8 @@
 		{#each data.users as user}
 			<div class="flex mb-4">
 				<div class="avatar mr-8">
-					<div class="w-12">
-						<Gravatar email="notgravatar@gmail.com" default="retro" rating="g" />
+					<div class="w-20 h-20 rounded-full mt-1">
+						<img alt="avatar" src={user.imgUrl} />
 					</div>
 				</div>
 				<div>

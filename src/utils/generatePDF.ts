@@ -42,7 +42,12 @@ const generatePdf = async (element: HTMLElement) => {
 	const pdfContentWidth = pdfWidth - 2 * marginX;
 
 	// ElementをCanvas化
-	const canvas = await html2canvas(element);
+	const canvas = await html2canvas(element, {
+		scale: 2,
+		useCORS: true,
+		allowTaint: true,
+		scrollY: -window.scrollY
+	});
 
 	doc.addImage(canvas.toDataURL('image/png'), 'PNG', marginX, 0, pdfContentWidth, 0);
 

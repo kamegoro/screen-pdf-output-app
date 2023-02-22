@@ -7,10 +7,11 @@ export const load: PageServerLoad = async () => {
 	return {
 		users: Array(20)
 			.fill('')
-			.map(() => ({
+			.map((_, i) => ({
 				name: faker.name.fullName(),
 				email: faker.internet.email(),
-				description: faker.commerce.productDescription()
+				description: faker.commerce.productDescription(),
+				imgUrl: i % 2 ? '/man.png' : '/woman.png'
 			}))
 	};
 };
