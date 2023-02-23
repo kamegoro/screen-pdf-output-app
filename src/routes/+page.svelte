@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { generatePdf } from '../utils/generatePDF';
+	import { goto } from '$app/navigation';
 	export let data: PageData;
 
 	let ref: HTMLElement;
 	let loading = false;
+	let count = 50;
 
 	const onPdf = async () => {
 		loading = true;
@@ -12,6 +14,16 @@
 			await generatePdf(ref);
 		}
 		loading = false;
+	};
+
+	const onEnter = (
+		e: KeyboardEvent & {
+			currentTarget: EventTarget & HTMLInputElement;
+		}
+	) => {
+		if (e.key === 'Enter') {
+			goto(`/?limit=${count}`);
+		}
 	};
 </script>
 
@@ -33,14 +45,20 @@
 			</div>
 		{/each}
 	</div>
-	<button
-		class="btn btn-primary fixed bottom-10 right-10 {loading ? 'loading' : undefined}"
-		on:click={onPdf}
-	>
-		{#if loading}
-			...loading
-		{:else}
-			PDF出力
-		{/if}
-	</button>
+	<div class="fixed bottom-10 right-10 flex flex-col">
+		<input
+			bind:value={count}
+			type="number"
+			placeholder="ユーザー数"
+			class="input w-36 max-w-xs mb-2"
+			on:keydown={onEnter}
+		/>
+		<button class="btn btn-primary {loading ? 'loading' : undefined}" on:click={onPdf}>
+			{#if loading}
+				...loading
+			{:else}
+				PDF出力
+			{/if}
+		</button>
+	</div>
 </div>

@@ -6,7 +6,7 @@ faker.locale = 'ja';
 export const load: PageServerLoad = async ({ url: { searchParams } }) => {
 	const limit = searchParams.get('limit');
 	const numberOfArray = (() => {
-		if (!limit || !Number(limit)) {
+		if (!limit || !Number(limit) || Number(limit) < 0) {
 			return 50;
 		}
 
