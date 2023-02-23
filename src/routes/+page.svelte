@@ -15,11 +15,6 @@
 	};
 </script>
 
-<svelte:head>
-	<title>PDF output app</title>
-	<meta name="description" content="PDF output app" />
-</svelte:head>
-
 <div class="container mx-auto max-w-4xl py-8">
 	<div bind:this={ref}>
 		{#each data.users as user}

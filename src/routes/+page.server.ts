@@ -3,9 +3,22 @@ import { faker } from '@faker-js/faker';
 
 faker.locale = 'ja';
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async ({ url: { searchParams } }) => {
+	const limit = searchParams.get('limit');
+	const numberOfArray = (() => {
+		if (!limit || !Number(limit)) {
+			return 50;
+		}
+
+		if (Number(limit) >= 200) {
+			return 200;
+		}
+
+		return Number(limit);
+	})();
+
 	return {
-		users: Array(20)
+		users: Array(numberOfArray)
 			.fill('')
 			.map((_, i) => ({
 				name: faker.name.fullName(),

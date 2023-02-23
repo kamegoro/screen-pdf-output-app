@@ -2,21 +2,28 @@ import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
 
 // Canvasの切り抜き
-const clipCanvas = (baseCanvas: HTMLCanvasElement, pdfWidth: number, clipPdfHeight: number) => {
+const clipCanvas = (
+	baseCanvas: HTMLCanvasElement,
+	canvasPdfY: number,
+	pdfWidth: number,
+	clipPdfHeight: number
+) => {
 	const clipCanvas = document.createElement('canvas');
 
 	// PDFの高さからCanvasの高さを逆算
-	const clipCanvasHeight = (clipPdfHeight * baseCanvas.width) / pdfWidth;
+	const clipCanvasHeight = (pdfHeight: number) => (pdfHeight * baseCanvas.width) / pdfWidth;
+
 	clipCanvas.width = baseCanvas.width;
-	clipCanvas.height = clipCanvasHeight;
+	clipCanvas.height = clipCanvasHeight(clipPdfHeight);
 	const context = clipCanvas.getContext('2d');
 	if (context) {
-		context.drawImage(baseCanvas, 0, clipCanvasHeight);
+		context.drawImage(baseCanvas, 0, clipCanvasHeight(canvasPdfY));
 	}
 
 	return {
-		canvas: clipCanvas,
-		pdfHeight: convertCanvasHeightForPdf(clipCanvas.height, clipCanvas.width, pdfWidth)
+		height: clipCanvas.height,
+		width: clipCanvas.width,
+		dataUrl: clipCanvas.toDataURL('image/png')
 	};
 };
 
@@ -38,18 +45,38 @@ const generatePdf = async (element: HTMLElement) => {
 	const pdfWidth = doc.internal.pageSize.getWidth();
 	const pdfHeight = doc.internal.pageSize.getHeight();
 
-	const marginX = 10;
-	const pdfContentWidth = pdfWidth - 2 * marginX;
+	const margin = 10;
+	const pdfContentWidth = pdfWidth - 2 * margin;
 
 	// ElementをCanvas化
-	const canvas = await html2canvas(element, {
-		scale: 2,
-		useCORS: true,
-		allowTaint: true,
-		scrollY: -window.scrollY
-	});
+	const canvas = await html2canvas(element);
 
-	doc.addImage(canvas.toDataURL('image/png'), 'PNG', marginX, 0, pdfContentWidth, 0);
+	const heightInCanvasPdf = convertCanvasHeightForPdf(canvas.height, canvas.width, pdfContentWidth);
+	let restImageHeight = heightInCanvasPdf;
+
+	while (restImageHeight > 0) {
+		if (restImageHeight <= pdfHeight) {
+			const clippedCanvas = clipCanvas(
+				canvas,
+				-(heightInCanvasPdf - restImageHeight),
+				pdfContentWidth,
+				restImageHeight
+			);
+
+			doc.addImage(clippedCanvas.dataUrl, 'PNG', margin, 0, pdfContentWidth, 0);
+			restImageHeight -= pdfHeight;
+		} else {
+			const clippedCanvas = clipCanvas(
+				canvas,
+				-(heightInCanvasPdf - restImageHeight),
+				pdfContentWidth,
+				pdfHeight
+			);
+			doc.addImage(clippedCanvas.dataUrl, 'PNG', margin, 0, pdfContentWidth, 0);
+			doc.addPage();
+			restImageHeight -= pdfHeight;
+		}
+	}
 
 	doc.save(`${now}.pdf`);
 };
