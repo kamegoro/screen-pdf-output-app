@@ -10,6 +10,7 @@ export const load: PageServerLoad = async ({ url: { searchParams } }) => {
 			return 30;
 		}
 
+		// 出力されるPDFのページが増えるとブラウザがクラッシュする
 		if (Number(user) >= 100) {
 			return 100;
 		}
