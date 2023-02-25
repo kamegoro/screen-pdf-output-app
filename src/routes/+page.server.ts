@@ -4,17 +4,17 @@ import { faker } from '@faker-js/faker';
 faker.locale = 'ja';
 
 export const load: PageServerLoad = async ({ url: { searchParams } }) => {
-	const limit = searchParams.get('limit');
+	const user = searchParams.get('user');
 	const numberOfArray = (() => {
-		if (!limit || !Number(limit) || Number(limit) < 0) {
-			return 50;
+		if (!user || !Number(user) || Number(user) < 0) {
+			return 30;
 		}
 
-		if (Number(limit) >= 200) {
-			return 200;
+		if (Number(user) >= 100) {
+			return 100;
 		}
 
-		return Number(limit);
+		return Number(user);
 	})();
 
 	return {

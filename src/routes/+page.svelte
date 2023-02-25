@@ -6,7 +6,7 @@
 
 	let ref: HTMLElement;
 	let loading = false;
-	let count = 50;
+	let count = data.users.length;
 
 	const onPdf = async () => {
 		loading = true;
@@ -22,7 +22,7 @@
 		}
 	) => {
 		if (e.key === 'Enter') {
-			goto(`/?limit=${count}`);
+			goto(`/?user=${count}`);
 		}
 	};
 </script>
@@ -49,11 +49,16 @@
 		<input
 			bind:value={count}
 			type="number"
+			disabled={loading}
 			placeholder="ユーザー数"
 			class="input w-36 max-w-xs mb-2"
 			on:keydown={onEnter}
 		/>
-		<button class="btn btn-primary {loading ? 'loading' : undefined}" on:click={onPdf}>
+		<button
+			disabled={loading}
+			class="btn btn-primary {loading ? 'loading' : undefined}"
+			on:click={onPdf}
+		>
 			{#if loading}
 				...loading
 			{:else}
