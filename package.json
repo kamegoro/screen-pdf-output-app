@@ -33,7 +33,7 @@
 	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "8.0.2",
-		"daisyui": "3.0.20",
+		"daisyui": "3.0.22",
 		"html2canvas": "1.4.1",
 		"jspdf": "2.5.1"
 	}
