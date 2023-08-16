@@ -1,6 +1,7 @@
 import type { PageServerLoad } from './$types';
 import { faker } from '@faker-js/faker';
 
+// eslint-disable-next-line @typescript-eslint/require-await
 export const load: PageServerLoad = async ({ url: { searchParams } }) => {
 	const user = searchParams.get('user');
 	const numberOfArray = (() => {
