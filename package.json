@@ -2,6 +2,7 @@
 	"name": "screen-pdf-output-app",
 	"version": "0.0.1",
 	"private": true,
+	"type": "module",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
@@ -11,7 +12,6 @@
 		"lint": "prettier . --check . && eslint .",
 		"format": "prettier . --write ."
 	},
-	"type": "module",
 	"dependencies": {
 		"@faker-js/faker": "8.1.0",
 		"@sveltejs/adapter-auto": "2.1.0",
