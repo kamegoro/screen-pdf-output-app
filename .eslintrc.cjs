@@ -15,6 +15,7 @@ module.exports = {
 	parserOptions: {
 		sourceType: 'module',
 		project: './tsconfig.json',
+		tsconfigRootDir: __dirname,
 		ecmaVersion: 2020
 	},
 	env: {
