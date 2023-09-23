@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   run-build:
-    name: lint
+    name: build
 
     timeout-minutes: 10
 
