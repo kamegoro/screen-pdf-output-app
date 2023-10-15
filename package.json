@@ -13,7 +13,7 @@
 		"format": "prettier . --write ."
 	},
 	"dependencies": {
-		"@faker-js/faker": "8.1.0",
+		"@faker-js/faker": "8.2.0",
 		"@sveltejs/adapter-auto": "2.1.0",
 		"@sveltejs/kit": "1.25.2",
 		"daisyui": "3.9.2",
