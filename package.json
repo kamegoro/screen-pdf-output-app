@@ -15,7 +15,7 @@
 	"dependencies": {
 		"@faker-js/faker": "8.2.0",
 		"@sveltejs/adapter-auto": "2.1.0",
-		"@sveltejs/kit": "1.25.2",
+		"@sveltejs/kit": "1.26.0",
 		"daisyui": "3.9.3",
 		"html2canvas": "1.4.1",
 		"jspdf": "2.5.1",
