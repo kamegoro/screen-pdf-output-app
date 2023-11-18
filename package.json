@@ -16,7 +16,7 @@
 		"@faker-js/faker": "8.3.1",
 		"@sveltejs/adapter-auto": "2.1.1",
 		"@sveltejs/kit": "1.27.6",
-		"daisyui": "4.4.1",
+		"daisyui": "4.4.2",
 		"html2canvas": "1.4.1",
 		"jspdf": "2.5.1",
 		"svelte": "4.2.5"
