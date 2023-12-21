@@ -14,7 +14,7 @@
 	},
 	"dependencies": {
 		"@faker-js/faker": "8.3.1",
-		"@sveltejs/adapter-auto": "3.0.0",
+		"@sveltejs/adapter-auto": "3.0.1",
 		"@sveltejs/kit": "1.30.3",
 		"daisyui": "4.4.23",
 		"html2canvas": "1.4.1",
