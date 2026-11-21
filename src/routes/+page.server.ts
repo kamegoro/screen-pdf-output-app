@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({ url: { searchParams } }) => {
 		users: Array(numberOfArray)
 			.fill('')
 			.map((_, i) => ({
-				name: faker.name.fullName(),
+				name: faker.person.fullName(),
 				email: faker.internet.email(),
 				description: faker.commerce.productDescription(),
 				imgUrl: i % 2 ? '/man.png' : '/woman.png'
